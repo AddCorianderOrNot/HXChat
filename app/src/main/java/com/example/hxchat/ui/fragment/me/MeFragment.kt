@@ -56,5 +56,13 @@ class MeFragment : BaseFragment<MeViewModel, FragmentMeBinding>(){
                 nav().navigateAction(R.id.action_mainfragment_to_meUserInfoFragment)
             }
         }
+
+        fun changePassword(){
+
+        }
+
+        fun toAbout(){
+            nav().navigateAction(R.id.action_mainfragment_to_aboutFragment)
+        }
     }
 }

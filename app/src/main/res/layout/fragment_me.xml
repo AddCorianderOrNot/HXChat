@@ -36,8 +36,19 @@
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
                     android:onClick="@{()->click.login()}"
-                    android:paddingTop="?attr/actionBarSize"
+
                     android:paddingBottom="?attr/actionBarSize">
+
+                    <TextView
+                        android:id="@+id/me_top_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:text="@string/app_name_black"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/me_user_imageView"
@@ -46,8 +57,7 @@
                         android:layout_marginStart="16dp"
                         android:src="@mipmap/ic_me_user_image"
                         bind:avatar="@{vm.imageUrl}"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintTop_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/me_top_text"
                         app:layout_constraintStart_toStartOf="parent"
                         />
 
@@ -92,6 +102,55 @@
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
                     android:layout_marginTop="-16dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tvPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/white_selector"
+                            android:paddingLeft="@dimen/size_16dp"
+                            android:paddingRight="@dimen/size_16dp"
+                            android:paddingTop="@dimen/size_12dp"
+                            android:layout_marginTop="@dimen/size_16dp"
+                            android:paddingBottom="@dimen/size_12dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/modify_password"
+                            android:textColor="@color/text_3"
+                            android:textSize="@dimen/size_16sp"
+                            android:drawableLeft="@drawable/ec_modify_password"
+                            android:drawablePadding="@dimen/size_6dp"
+                            android:drawableRight="@drawable/ec_next"
+                            android:layout_marginBottom="@dimen/size_line"
+                            android:onClick="@{()->click.changePassword()}"/>
+
+                        <TextView
+                            android:id="@+id/tvAbout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/white_selector"
+                            android:layout_marginTop="@dimen/size_space"
+                            android:paddingLeft="@dimen/size_16dp"
+                            android:paddingRight="@dimen/size_16dp"
+                            android:paddingTop="@dimen/size_12dp"
+                            android:paddingBottom="@dimen/size_12dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/about"
+                            android:textColor="@color/text_3"
+                            android:textSize="@dimen/size_16sp"
+                            android:drawableLeft="@drawable/ec_about"
+                            android:drawablePadding="@dimen/size_6dp"
+                            android:drawableRight="@drawable/ec_next"
+                            android:layout_marginBottom="@dimen/size_line"
+                            android:onClick="@{()->click.toAbout()}"
+                            />
+
+                    </LinearLayout>
+
+
 
                 </androidx.cardview.widget.CardView>
 
