@@ -53,7 +53,7 @@ class changeUserInfoFragment : BaseFragment<ChangeUserInfoViewModel, FragmentCha
     override fun createObserver() {
         requestUserInfoViewModel.userInfo.observe(viewLifecycleOwner, Observer { resultState->
             parseState(resultState,{
-                appViewModel.userInfo.postValue(it)
+                appViewModel.changeUserInfo(it)
                 nav().navigateUp()
             },{
                 showMessage("修改失败")
