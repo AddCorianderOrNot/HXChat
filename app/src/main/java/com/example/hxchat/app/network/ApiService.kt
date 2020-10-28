@@ -7,6 +7,7 @@ import com.example.hxchat.data.packet.resp.MessageResp
 import me.hgj.jetpackmvvm.state.ResultState
 import okhttp3.RequestBody
 import retrofit2.http.*
+import java.io.File
 
 /**
  *Created by Pbihao
@@ -42,10 +43,24 @@ interface ApiService {
     ): ApiResponse<Any>
 
     /**
-     * 获得好友列表
+     * 更新用户
      */
-    @GET("friend")
-    suspend fun getFriends(): ApiResponse<ArrayList<User>>
+    @FormUrlEncoded
+    @PATCH("user")
+    suspend fun update(
+        @Field("key") key: String,
+        @Field("value") value: String
+    ): ApiResponse<UserInfo>
+
+    /**
+     * 更新用户头像
+     */
+    @Multipart
+    @PATCH("user")
+    suspend fun update(
+        @Field("key") key: String,
+        @Field("value") value: File?
+    ): ApiResponse<UserInfo>
 
     /**
      * 搜索用户
@@ -64,10 +79,22 @@ interface ApiService {
     ): ApiResponse<User>
 
     /**
+     * 获得好友列表
+     */
+    @GET("friend")
+    suspend fun getFriends(): ApiResponse<ArrayList<User>>
+
+    /**
      * 发送消息
      */
     @POST("message")
     suspend fun sendMessage(
         @Body body: RequestBody
     ): ApiResponse<MessageResp>
+
+    /**
+     * 接收消息
+     */
+    @GET("message")
+    suspend fun receiveMessage(): ApiResponse<ArrayList<MessageResp>>
 }
