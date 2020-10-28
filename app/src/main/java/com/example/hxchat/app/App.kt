@@ -16,6 +16,8 @@ import com.vanniktech.emoji.EmojiManager
 import com.vanniktech.emoji.google.GoogleEmojiProvider
 import me.hgj.jetpackmvvm.base.BaseApp
 import me.hgj.jetpackmvvm.ext.util.jetpackMvvmLog
+import timber.log.Timber
+import java.io.File
 
 
 /**
@@ -68,6 +70,14 @@ class App : BaseApp(){
             .apply()
     }
 
+    fun getPath(): String{
+        val path = getExternalFilesDir(Constants.DEFAULT_DIR)?.absolutePath
+        val file = File(path)
+        if(!file.exists()){
+            file.mkdirs()
+        }
+        return path!!
+    }
 
 
 }

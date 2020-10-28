@@ -12,6 +12,7 @@ import me.hgj.jetpackmvvm.state.ResultState
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.json.JSONObject
+import java.io.File
 
 
 /**
@@ -19,7 +20,6 @@ import org.json.JSONObject
  * on 2020/10/12
  */
 class RequestUserInfoViewModel : BaseViewModel(){
-    var user : MutableLiveData<ResultState<ArrayList<User>>> = MutableLiveData()
     var addFriendsUserInfo : MutableLiveData<ResultState<User>> = MutableLiveData()
     var userInfo: MutableLiveData<ResultState<UserInfo>> = MutableLiveData()
 
@@ -63,5 +63,11 @@ class RequestUserInfoViewModel : BaseViewModel(){
             { apiService.update("nickName", nickName) },
             userInfo
         )
+    }
+
+    fun changeAvatar(file: File?){
+        val  user = UserInfo("1435343052@qq.com", "nickName", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1602675229475&di=4bafc6967f56dbefaa7e34b9f919ac87&imgtype=0&src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201910%2F04%2F20191004114347_coqyw.thumb.400_0.jpeg",
+            "123", "123", "好累啊")
+        userInfo.postValue(ResultState.onAppSuccess(user))
     }
 }

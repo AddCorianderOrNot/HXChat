@@ -14,6 +14,8 @@ import com.example.hxchat.app.util.TimeUtils
 import com.example.hxchat.ui.view.DragBubbleView
 import com.king.easychat.glide.GlideApp
 import de.hdodenhof.circleimageview.CircleImageView
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  *Created by Pbihao
@@ -53,12 +55,19 @@ object CustomBingAdapter{
     @BindingAdapter(value = ["time","curTime","showDate"])
     fun TextView.dateFormat(time: String?, curTime: Long, showDate: Boolean){
         time?.run {
-            val date = TimeUtils.formatDate(time,TimeUtils.FORMAT_Y_TO_D)
+            val longTime = time.toLong()
+            val date = TimeUtils.formatDate(longTime,TimeUtils.FORMAT_Y_TO_D)
             val curDate = TimeUtils.formatDate(curTime,TimeUtils.FORMAT_Y_TO_D)
             if(curDate == date){
-                text = TimeUtils.formatDate(time,TimeUtils.FORMAT_H_TO_MIN)
+                val sdf =  SimpleDateFormat("HH:mm")
+                sdf.setTimeZone(TimeZone.getTimeZone("GMT+08:00"))
+                val date2 = Date(longTime)
+                text = sdf.format(date2)
             }else{
-                text = TimeUtils.formatDate(time,if(showDate) "MM-dd" else TimeUtils.FORMAT_Y_TO_M_EN)
+                val sdf =  SimpleDateFormat("yyyy-MM-dd HH:mm")
+                sdf.setTimeZone(TimeZone.getTimeZone("GMT+08:00"));  //加上这行代码就哦了
+                val date2 = Date(longTime)
+                text = sdf.format(date2)
             }
 
         } ?: run {

@@ -19,4 +19,10 @@ class AppViewModel:BaseViewModel(){
     }
 
     fun getFriendEmail() : String? = friendEmail.value
+
+    fun changeUserInfo(user: UserInfo){
+        CacheUtil.setUser(user)
+        CacheUtil.setIsLogin(true)
+        userInfo.postValue(user)
+    }
 }

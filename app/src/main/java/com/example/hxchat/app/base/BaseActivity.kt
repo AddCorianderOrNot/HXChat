@@ -6,6 +6,7 @@ import androidx.annotation.StringRes
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Lifecycle
 import com.example.hxchat.R
+import com.example.hxchat.app.App
 import com.example.hxchat.app.Constants
 import com.example.hxchat.app.event.AppViewModel
 import com.example.hxchat.app.event.EventViewModel
@@ -91,7 +92,7 @@ abstract class BaseActivity<VM: BaseViewModel, DB : ViewDataBinding> :BaseVmDbAc
         super.onStop()
         isStop = true
     }
-
+    fun getApp(): App = application as  App
 
 
     fun getUserEmail() = appViewModel.userInfo.value?.email ?: ""

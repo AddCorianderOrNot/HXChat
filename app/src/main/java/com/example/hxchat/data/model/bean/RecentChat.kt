@@ -17,6 +17,4 @@ class RecentChat(val email: String, val chatId: String,var showName: String?,var
     override fun toString(): String {
         return "RecentChat(email='$email', chatId='$chatId', showName=$showName, avatar=$avatar, dateTime='$dateTime', id=$id)"
     }
-
-
 }

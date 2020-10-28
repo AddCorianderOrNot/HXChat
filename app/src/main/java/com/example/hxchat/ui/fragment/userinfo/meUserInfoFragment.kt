@@ -75,53 +75,6 @@ class meUserInfoFragment: BaseFragment<MeUserInfoViewModel, FragmentMeUserInfoBi
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Log.d("select", "选择了一张图片")
-        super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode ==  RESULT_OK){
-            when(requestCode){
-                Constants.REQ_SELECT_PHOTO -> cropRawPhoto(obtainSelectPhoto(data))
-            }
-        }
-    }
-
-    private fun cropRawPhoto(uri: Uri?) {
-        Log.d("select", "选择了一张图片")
-        /*
-        uri?.let {
-            val options = UCrop.Options()
-            //        options.setToolbarTitle("裁剪");
-            // 修改标题栏颜色
-            options.setToolbarColor(ContextCompat.getColor(context,R.color.colorPrimary))
-            options.setToolbarWidgetColor(ContextCompat.getColor(context,R.color.white))
-            // 修改状态栏颜色
-            options.setStatusBarColor(ContextCompat.getColor(context,R.color.colorPrimaryDark))
-            // 隐藏底部工具
-            options.setHideBottomControls(true)
-            // 图片格式
-            options.setCompressionFormat(Bitmap.CompressFormat.JPEG)
-            // 设置图片压缩质量
-            options.setCompressionQuality(100)
-            // 是否让用户调整范围(默认false)，如果开启，可能会造成剪切的图片的长宽比不是设定的
-            // 如果不开启，用户不能拖动选框，只能缩放图片
-            options.setFreeStyleCropEnabled(false)
-            options.setCircleDimmedLayer(true)
-            avatarFile = File(getApp().getPath(), System.currentTimeMillis().toString() + ".jpg")
-
-            // 设置源uri及目标uri
-            UCrop.of(uri,Uri.fromFile(avatarFile))
-                // 长宽比
-                .withAspectRatio(1f, 1f)
-                // 图片大小
-                .withMaxResultSize(300, 300)
-                // 配置参数
-                .withOptions(options)
-                .start(this,Constants.REQ_CROP_PHOTO)
-        }
-
-         */
-    }
-
     private fun obtainSelectPhoto(data: Intent?):Uri?{
         val result = Matisse.obtainPathResult(data)
         return Uri.fromFile(File(result[0]))
@@ -138,6 +91,7 @@ class meUserInfoFragment: BaseFragment<MeUserInfoViewModel, FragmentMeUserInfoBi
                 putInt(Constants.KEY_TYPE, Constants.ChangeMeNickName)
             })
         }
+
         @SuppressLint("CheckResult")
         fun toEditIcon(){
             rxPermission.request(
