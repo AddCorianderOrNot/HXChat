@@ -59,7 +59,7 @@ interface ApiService {
     @PATCH("user")
     suspend fun update(
         @Field("key") key: String,
-        @Field("value") value: File
+        @Field("value") value: File?
     ): ApiResponse<UserInfo>
 
     /**
