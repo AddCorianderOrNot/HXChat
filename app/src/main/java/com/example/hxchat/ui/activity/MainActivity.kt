@@ -185,6 +185,8 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     private fun obtainSelectPhoto(data: Intent?): Uri?{
         val result = Matisse.obtainPathResult(data)
+        Log.d("photo", "从选择中获得了图片")
+        Log.d("photo", result[0].toString())
         return Uri.fromFile(File(result[0]))
     }
 
