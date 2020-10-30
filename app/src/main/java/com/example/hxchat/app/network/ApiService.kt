@@ -4,10 +4,10 @@ import com.example.hxchat.data.model.bean.ApiResponse
 import com.example.hxchat.data.model.bean.User
 import com.example.hxchat.data.model.bean.UserInfo
 import com.example.hxchat.data.packet.resp.MessageResp
-import me.hgj.jetpackmvvm.state.ResultState
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
-import java.io.File
+
 
 /**
  *Created by Pbihao
@@ -58,8 +58,8 @@ interface ApiService {
     @Multipart
     @PATCH("user")
     suspend fun update(
-        @Field("key") key: String,
-        @Field("value") value: File?
+        @Part("key") key : RequestBody,
+        @Part part : MultipartBody.Part
     ): ApiResponse<UserInfo>
 
     /**
