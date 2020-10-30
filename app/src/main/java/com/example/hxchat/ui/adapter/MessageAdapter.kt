@@ -36,6 +36,7 @@ class MessageAdapter(val email: String, val viewModel: MessageViewModel): Bindin
 
         helper.addOnClickListener(R.id.clContent)
         helper.addOnClickListener(R.id.llDelete)
+        helper.addOnClickListener(R.id.llMarkRead)
 
         helper.mBinding?.let {
             it.setVariable(BR.curTime, curTime)

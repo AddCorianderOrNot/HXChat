@@ -26,6 +26,7 @@
     <color name="text_6">#666666</color>
     <color name="text_white">#ffffff</color>
     <color name="text_red">#D93F3C</color>
+    <color name="text_yellow">#FF9800</color>
     <color name="bubble_color">#cccccc</color>
     <color name="transparent">#00000000</color>
     <color name="text_80">#808080</color>

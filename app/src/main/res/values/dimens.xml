@@ -26,4 +26,6 @@
     <dimen name="size_30dp">30dp</dimen>
     <dimen name="size_120dp">120dp</dimen>
     <dimen name="app_bar_height">230dp</dimen>
+    <dimen name="size_160dp">160dp</dimen>
+    <dimen name="size_180dp">180dp</dimen>
 </resources>

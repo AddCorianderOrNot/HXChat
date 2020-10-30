@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:contentView="@+id/clContent"
-        app:rightMenuView="@+id/llDelete">
+        app:rightMenuView="@+id/llRight">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clContent"
@@ -94,17 +94,40 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:id="@+id/llDelete"
-            android:orientation="vertical"
-            android:layout_width="@dimen/size_80dp"
-            android:layout_height="match_parent"
-            android:background="@color/text_red"
-            android:gravity="center">
-            <ImageView
-                android:id="@+id/ivDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ec_delete" />
+            android:id="@+id/llRight"
+            android:orientation="horizontal"
+            android:layout_width="@dimen/size_180dp"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/llMarkRead"
+                android:layout_width="@dimen/size_100dp"
+                android:layout_height="match_parent"
+                android:background="@color/text_yellow"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mark_read"
+                    android:textSize="@dimen/size_16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    tools:text="标记已读"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDelete"
+                android:layout_width="@dimen/size_80dp"
+                android:layout_height="match_parent"
+                android:background="@color/text_red"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/ivDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ec_delete" />
+            </LinearLayout>
+
         </LinearLayout>
     </com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout>
 </layout>

@@ -22,4 +22,5 @@
     <string name="about">关于</string>
 
     <string name="about_desc">碰瓷香菜小组于2020年软件工程完成的课程项目，小组成员包括Pbh、Yjy、Ldq、Hy。\n本次开发采用MVVM模式</string>
+    <string name="mark_read">标为已读</string>
 </resources>

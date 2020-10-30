@@ -80,11 +80,9 @@ class HomeFragment: BaseFragment<HomeViewModel, FragmentHomeBinding>(), View.OnC
             when(view.id){
                 R.id.clContent -> clickItem(mAdapter.getItem(position)!!)
                 R.id.llDelete -> clickDeleteItem(mAdapter.getItem(position)!!)
+                R.id.llMarkRead -> clickMarkRead(mAdapter.getItem(position)!!)
             }
         }
-
-
-
     }
 
     override fun createObserver() {
@@ -155,6 +153,12 @@ class HomeFragment: BaseFragment<HomeViewModel, FragmentHomeBinding>(), View.OnC
     override fun onDestroy() {
         isRefresh = false
         super.onDestroy()
+    }
+
+    fun clickMarkRead(data: Message){
+        Log.d("read", "点击了标记消息已读")
+        Log.d("read", data.toString())
+        messageViewModel.updateMessageRead(getUserEmail(),data.id!!)
     }
 
     fun clickItem(data: Message){
