@@ -31,7 +31,7 @@ class WelcomeActivity : BaseActivity<BaseViewModel, ActivityWelcomeBinding>() {
             finish()
             return
         }
-        //requestLoginRegisterViewModel.login()
+        requestLoginRegisterViewModel.login()
 
         //val user = UserInfo("1435343052@qq.com", "pbihao", "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2902873695,2157267194&fm=111&gp=0.jpg","123", "123", "123","123")
 /*
@@ -43,13 +43,13 @@ class WelcomeActivity : BaseActivity<BaseViewModel, ActivityWelcomeBinding>() {
         finish()
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
 */
-        CacheUtil.setUser(null)
-        CacheUtil.setIsLogin(false)
-        appViewModel.userInfo.postValue(null)
-        appViewModel.isLogin.postValue(false)
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+       // CacheUtil.setUser(null)
+        //CacheUtil.setIsLogin(false)
+        //appViewModel.userInfo.postValue(null)
+        //appViewModel.isLogin.postValue(false)
+        //startActivity(Intent(this, MainActivity::class.java))
+        //finish()
+        //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
 
     }
 

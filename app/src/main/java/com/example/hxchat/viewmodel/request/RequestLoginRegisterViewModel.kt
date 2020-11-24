@@ -29,6 +29,7 @@ class RequestLoginRegisterViewModel : BaseViewModel(){
     //操作包括退出登录，修改头像，修改昵称，修改签名等
     var requestSucsess  = MutableLiveData<ResultState<Boolean>>()
 
+    // 需要实现自动登录
     fun login(){
         request(
             { apiService.login()},

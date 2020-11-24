@@ -44,6 +44,9 @@ class MeFragment : BaseFragment<MeViewModel, FragmentMeBinding>(){
                       mViewModel.name.set("请先登录~")
                       mViewModel.signature.set("个性签名:")
                       mViewModel.imageUrl.set("")
+                      nav().jumpByLogin {
+                          nav().navigateAction(R.id.action_mainfragment_to_meUserInfoFragment)
+                      }
                   })
             })
         }
@@ -58,11 +61,15 @@ class MeFragment : BaseFragment<MeViewModel, FragmentMeBinding>(){
         }
 
         fun changePassword(){
-
+            nav().navigateAction(R.id.action_mainfragment_to_changePasswordFragment)
         }
 
         fun toAbout(){
             nav().navigateAction(R.id.action_mainfragment_to_aboutFragment)
+        }
+
+        fun toWordCloud(){
+            nav().navigateAction(R.id.action_mainfragment_to_wordcloud)
         }
     }
 }

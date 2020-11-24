@@ -18,12 +18,12 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
         <action
-        android:id="@+id/action_mainfragment_to_friendUserInfoFragment"
-        app:destination="@id/friendUserInfoFragment"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_left"
-        app:popEnterAnim="@anim/slide_in_left"
-        app:popExitAnim="@anim/slide_out_right"/>
+            android:id="@+id/action_mainfragment_to_friendUserInfoFragment"
+            app:destination="@id/friendUserInfoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_mainfragment_to_meUserInfoFragment"
             app:destination="@id/meUserInfoFragment"
@@ -31,9 +31,28 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+            android:id="@+id/action_mainfragment_to_meUserInfoFragment2"
+            app:destination="@id/meUserInfoFragment"
+            />
         <action
             android:id="@+id/action_mainfragment_to_aboutFragment"
             app:destination="@id/aboutFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_mainfragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_mainfragment_to_wordcloud"
+            app:destination="@id/wordCloudFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -110,5 +129,13 @@
         android:id="@+id/aboutFragment"
         android:name="com.example.hxchat.ui.fragment.me.AboutFragment"
         android:label="AboutFragment" />
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.hxchat.ui.fragment.userinfo.ChangePasswordFragment"
+        android:label="ChangePasswordFragment" />
+    <fragment
+        android:id="@+id/wordCloudFragment"
+        android:name="com.example.hxchat.ui.fragment.me.WordCloudFragment"
+        android:label="WordCloudFragment" />
 
 </navigation>

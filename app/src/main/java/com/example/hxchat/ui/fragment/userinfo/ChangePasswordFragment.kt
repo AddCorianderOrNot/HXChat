@@ -31,7 +31,7 @@ class ChangePasswordFragment: BaseFragment<ChangePasswordViewModel, FragmentChan
         mDatabind.vm = mViewModel
         mDatabind.click = CLickProxy()
 
-        center_toolbar.tvTitle.text = "注册 "
+        center_toolbar.tvTitle.text = "修改密码 "
         center_toolbar.ivLeft.setOnClickListener{
             nav().navigateUp()
         }

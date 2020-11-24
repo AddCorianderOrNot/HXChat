@@ -13,6 +13,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.example.hxchat.R
 import com.example.hxchat.app.Constants
 import com.example.hxchat.app.base.BaseFragment
+import com.example.hxchat.app.ext.jumpByLogin
+import com.example.hxchat.app.ext.nav
 import com.example.hxchat.data.model.bean.Message
 import com.example.hxchat.data.model.bean.Operator
 import com.example.hxchat.databinding.FragmentHomeBinding
@@ -25,7 +27,6 @@ import com.king.easychat.netty.packet.PacketType
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.home_toolbar.*
 import me.hgj.jetpackmvvm.base.appContext
-import me.hgj.jetpackmvvm.ext.nav
 import me.hgj.jetpackmvvm.ext.navigateAction
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -83,6 +84,13 @@ class HomeFragment: BaseFragment<HomeViewModel, FragmentHomeBinding>(), View.OnC
                 R.id.llMarkRead -> clickMarkRead(mAdapter.getItem(position)!!)
             }
         }
+
+
+        if(appViewModel.isLogin.value == null || appViewModel.isLogin.value == false){
+            nav().jumpByLogin {
+                nav().navigateAction(R.id.action_mainfragment_to_meUserInfoFragment2)
+            }
+        }
     }
 
     override fun createObserver() {
@@ -97,6 +105,7 @@ class HomeFragment: BaseFragment<HomeViewModel, FragmentHomeBinding>(), View.OnC
                 onTotalCountCallback?.onTotalCountChanged(it)
             })
         }
+
     }
 
     private fun setEmpty(){

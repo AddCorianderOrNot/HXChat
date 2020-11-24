@@ -36,6 +36,8 @@ import com.king.easychat.netty.packet.PacketType
 import com.yalantis.ucrop.UCrop
 import com.zhihu.matisse.Matisse
 import kotlinx.android.synthetic.main.fragment_chat.*
+import me.hgj.jetpackmvvm.ext.nav
+import me.hgj.jetpackmvvm.ext.navigateAction
 import me.hgj.jetpackmvvm.ext.parseState
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

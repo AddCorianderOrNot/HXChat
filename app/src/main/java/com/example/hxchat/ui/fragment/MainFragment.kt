@@ -29,6 +29,8 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>(){
                 R.id.menu_me -> mainViewpager.setCurrentItem(2, false)
             }
         }
+
+
     }
 
 }

@@ -121,7 +121,7 @@
                             android:text="@string/modify_password"
                             android:textColor="@color/text_3"
                             android:textSize="@dimen/size_16sp"
-                            android:drawableLeft="@drawable/ec_modify_password"
+                            android:drawableLeft="@drawable/ic_outline_password_24"
                             android:drawablePadding="@dimen/size_6dp"
                             android:drawableRight="@drawable/ec_next"
                             android:layout_marginBottom="@dimen/size_line"
@@ -141,11 +141,32 @@
                             android:text="@string/about"
                             android:textColor="@color/text_3"
                             android:textSize="@dimen/size_16sp"
-                            android:drawableLeft="@drawable/ec_about"
+                            android:drawableLeft="@drawable/ic_outline_about_24"
                             android:drawablePadding="@dimen/size_6dp"
                             android:drawableRight="@drawable/ec_next"
                             android:layout_marginBottom="@dimen/size_line"
                             android:onClick="@{()->click.toAbout()}"
+                            />
+
+                        <TextView
+                            android:id="@+id/tvCloud"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/white_selector"
+                            android:layout_marginTop="@dimen/size_space"
+                            android:paddingLeft="@dimen/size_16dp"
+                            android:paddingRight="@dimen/size_16dp"
+                            android:paddingTop="@dimen/size_12dp"
+                            android:paddingBottom="@dimen/size_12dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/wordcloud"
+                            android:textColor="@color/text_3"
+                            android:textSize="@dimen/size_16sp"
+                            android:drawableLeft="@drawable/ic_baseline_cloud_queue_24"
+                            android:drawablePadding="@dimen/size_6dp"
+                            android:drawableRight="@drawable/ec_next"
+                            android:layout_marginBottom="@dimen/size_line"
+                            android:onClick="@{()->click.toWordCloud()}"
                             />
 
                     </LinearLayout>

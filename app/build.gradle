@@ -163,4 +163,6 @@ dependencies {
     implementation 'com.vanniktech:emoji-google:0.7.0'
     implementation 'com.vanniktech:emoji-material:0.7.0'
     implementation "com.github.yalantis:ucrop:2.2.4"
+
+    implementation 'net.alhazmy13.wordcloud:library:0.2.0-beta'
 }
