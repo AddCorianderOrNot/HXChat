@@ -50,7 +50,7 @@ class WordCloudFragment : BaseFragment<MeViewModel, FragmentWordCloudBinding>(){
             parseState(resultState,{
                 activity?.runOnUiThread(Runnable {
                     wordCloud.setDataSet(it)
-                    wordCloud.setSize(400,400)
+                    wordCloud.setSize(400,700)
                     wordCloud.setColors(ColorTemplate.MATERIAL_COLORS)
                     wordCloud.notifyDataSetChanged()
                 })
