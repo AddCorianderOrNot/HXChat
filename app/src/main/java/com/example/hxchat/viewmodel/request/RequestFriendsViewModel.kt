@@ -25,9 +25,8 @@ class RequestFriendsViewModel : BaseViewModel(){
     /**
      * 获取用户的好友列表
      * 如果是已经同意了的好友，那么user类中的
-     * var newFriend:Boolean = false
-     * 这个值为false
-     * 否则的话为true
+     * remark这个值为null
+     * 否则的话为"new friend"
      */
     fun getfriends(){
         Log.d("friendsData", "拉取")
@@ -37,33 +36,18 @@ class RequestFriendsViewModel : BaseViewModel(){
         )
     }
 
-    /**
-     * 获得新的好友申请的列表
-     */
-    fun getNewFriend(){
-        val user = User(
-        "1234567@qq.com",
-        "Pbihao",
-        "",
-        "",
-            ""
-        )
-        val list = ArrayList<User>()
-        list.add(user)
-        newFriendsData.postValue(ResultState.onAppSuccess(list))
-    }
 
     /**
      * 同意了添加好友
      */
-    fun acceptNewFriend(myEmail:String, friendEmail:String){
+    fun acceptNewFriend(myEmail:String?, friendEmail:String?){
 
     }
 
     /**
      * 拒绝了添加好友
      */
-    fun cancelNewFriend(myEmail: String, friendEmail:String){
+    fun cancelNewFriend(myEmail: String?, friendEmail:String?){
 
     }
 }

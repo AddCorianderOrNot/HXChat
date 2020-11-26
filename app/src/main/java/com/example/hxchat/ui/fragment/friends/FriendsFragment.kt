@@ -1,5 +1,7 @@
 package com.example.hxchat.ui.fragment.friends
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -67,7 +69,22 @@ class FriendsFragment:BaseFragment<FriendsViewModel, FragmentFriendsBinding>(), 
 
         requestFriendsViewModel.friendsData.observe(viewLifecycleOwner, Observer { resultState ->
             parseState(resultState, {
-                mAdapter.replaceData(it)
+                while (mAdapter.itemCount > 0){
+                    mAdapter.remove(0)
+                }
+
+                for(item in it){
+                    if (item.remark != null){
+                        mAdapter.addData(item)
+                    }
+                }
+
+                for(item in it){
+                    if (item.remark == null){
+                        mAdapter.addData(item)
+                    }
+                }
+
                 if (it.size > 0) {
                     usersViewModel.saveUsers(it)
                 }
@@ -86,6 +103,23 @@ class FriendsFragment:BaseFragment<FriendsViewModel, FragmentFriendsBinding>(), 
     }
 
     fun clickItem(data: User){
+
+        if(data.remark != null){
+            val alerDialogbuilder = AlertDialog.Builder(activity)
+            alerDialogbuilder.setMessage("请问确定添加好友？")
+            alerDialogbuilder.setTitle("验证")
+            alerDialogbuilder.setPositiveButton("确定", DialogInterface.OnClickListener { dialogInterface, i ->
+                requestFriendsViewModel.acceptNewFriend(appViewModel.userInfo.value?.email, data.email)
+                requestFriendsViewModel.getfriends()
+            })
+            alerDialogbuilder.setNegativeButton("拒绝", DialogInterface.OnClickListener { dialogInterface, i ->
+                requestFriendsViewModel.cancelNewFriend(appViewModel.userInfo.value?.email, data.email)
+                requestFriendsViewModel.getfriends()
+            })
+            alerDialogbuilder.create().show()
+            return
+        }
+
         nav().navigateAction(R.id.action_mainfragment_to_friendUserInfoFragment, Bundle().apply {
             putParcelable("user", data)
             putBoolean("isAlreadyFriend", true)

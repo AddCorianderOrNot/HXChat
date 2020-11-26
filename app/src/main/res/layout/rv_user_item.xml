@@ -64,7 +64,7 @@
             android:text="好友申请"
             android:singleLine="true"
             tools:text="好友申请"
-            
+            android:visibility="@{(data.remark==null) ?  View.GONE : View.VISIBLE}"
             android:layout_marginRight="@dimen/size_6dp"
             android:layout_marginTop="@dimen/size_4dp"
             app:layout_constraintTop_toBottomOf="@+id/tvName"
