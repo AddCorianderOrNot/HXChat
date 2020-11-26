@@ -47,7 +47,7 @@
             android:layout_marginTop="@dimen/size_8dp"
             android:layout_below="@+id/tvTime"
             android:layout_toLeftOf="@+id/ivAvatar"
-            android:layout_marginLeft="@dimen/size_50dp"
+            android:layout_marginLeft="@dimen/size_40p"
             android:layout_marginRight="@dimen/size_6dp"
             android:textSize="@dimen/size_16sp"
             android:textColor="@color/text_white"
@@ -55,6 +55,24 @@
             tools:text="我用双手成就你的梦想"
             android:visibility="@{data.image ?  View.GONE : View.VISIBLE}"
             android:background="@drawable/ec_chat_bubble_right"/>
+
+        <TextView
+            android:id="@+id/haveRead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_marginLeft="@dimen/size_37dp"
+            android:layout_toLeftOf="@+id/ivAvatar"
+            android:layout_marginTop="@dimen/size_5dp"
+            android:layout_marginRight="@dimen/size_5dp"
+            android:layout_below="@+id/tvContent"
+            android:textSize="@dimen/size_10sp"
+            android:textColor="@color/text_red"
+            android:text="@string/haveNotRead"
+            tools:text="未读"
+            android:visibility="@{data.haveRead ?  View.GONE : View.VISIBLE}" />
+
         <ImageView
             android:id="@+id/ivContent"
             android:layout_width="wrap_content"

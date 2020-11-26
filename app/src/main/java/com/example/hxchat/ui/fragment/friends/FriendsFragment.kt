@@ -75,8 +75,8 @@ class FriendsFragment:BaseFragment<FriendsViewModel, FragmentFriendsBinding>(), 
         requestFriendsViewModel.friendsData.observe(viewLifecycleOwner, Observer { resultState ->
             parseState(resultState, {
                 Log.d("it", it.toString())
+                mAdapter.replaceData(it)
                 if (it.size > 0) {
-                    mAdapter.replaceData(it)
                     usersViewModel.saveUsers(it)
                 }
                 srl.isRefreshing = false
@@ -104,6 +104,7 @@ class FriendsFragment:BaseFragment<FriendsViewModel, FragmentFriendsBinding>(), 
         requestFriendsViewModel.getfriends()
         super.onResume()
     }
+
 
     private fun setEmpty(){
         if (mAdapter.emptyView == null){

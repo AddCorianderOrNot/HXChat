@@ -1,6 +1,7 @@
 package com.example.hxchat.ui.activity.chat
 
 import android.os.Bundle
+import android.text.BoringLayout
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -8,21 +9,20 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.example.hxchat.app.util.Event.sendEvent
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hxchat.R
 import com.example.hxchat.app.Constants
 import com.example.hxchat.app.base.BaseActivity
-import com.example.hxchat.app.ext.hideSoftKeyboard
 import com.example.hxchat.app.util.Event
+import com.example.hxchat.app.util.Event.sendEvent
 import com.example.hxchat.app.util.KeyboardUtils
 import com.example.hxchat.data.model.bean.Operator
 import com.example.hxchat.data.packet.resp.MessageResp
 import com.example.hxchat.databinding.FragmentChatBinding
 import com.example.hxchat.ui.adapter.ChatAdapter
 import com.example.hxchat.ui.adapter.DividerItemDecoration
+import com.example.hxchat.viewmodel.request.RequestLastReadtime
 import com.example.hxchat.viewmodel.request.RequestMessageViewModel
 import com.example.hxchat.viewmodel.state.ChatViewModel
 import com.example.hxchat.viewmodel.state.MessageViewModel
@@ -30,12 +30,10 @@ import com.king.easychat.netty.packet.MessageType
 import com.vanniktech.emoji.EmojiPopup
 import kotlinx.android.synthetic.main.center_toolbar.*
 import kotlinx.android.synthetic.main.fragment_chat.*
-import kotlinx.android.synthetic.main.rv_chat_item.*
-import kotlinx.android.synthetic.main.rv_chat_item.ivContent
-import kotlinx.android.synthetic.main.rv_chat_right_item.*
 import me.hgj.jetpackmvvm.ext.parseState
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.util.*
 
 
 /**
@@ -49,6 +47,8 @@ class ChatActivity : BaseActivity<ChatViewModel, FragmentChatBinding>(){
     var avatar : String? = null
 
 
+    private val timer = Timer()
+
     val mAdapter by lazy { ChatAdapter(avatar, getUserAvatar()) }
 
     var message : String? = null
@@ -57,8 +57,11 @@ class ChatActivity : BaseActivity<ChatViewModel, FragmentChatBinding>(){
 
     var isAutoScroll = true
 
+    var firstIn: Boolean = true
+
     private val requestMessageViewModel: RequestMessageViewModel by viewModels()
     private val messageViewModel : MessageViewModel by lazy {  MessageViewModel(application) }
+    private val requestLastReadtime: RequestLastReadtime by viewModels()
 
     private val emojiPopup:EmojiPopup by lazy { EmojiPopup.Builder.fromRootView(findViewById(R.id.rtContent)).build(findViewById(R.id.etContent)) }
 
@@ -142,9 +145,25 @@ class ChatActivity : BaseActivity<ChatViewModel, FragmentChatBinding>(){
         appViewModel.friendEmail.postValue(friendEmail)
 
         messageViewModel.queryMessageByFriendId(getUserEmail(),friendEmail,curPage,Constants.PAGE_SIZE)
+
+
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                requestLastReadtime.sendLastReadTime(appViewModel.userInfo.value?.email, appViewModel.friendEmail.value)
+                requestLastReadtime.getLastReadTime(appViewModel.userInfo.value?.email, appViewModel.friendEmail.value)
+            }
+        }, 0, 5000)
+
+
     }
 
     override fun createObserver() {
+
+        requestLastReadtime.lastReadTime.observe(this, Observer {resultState ->
+            parseState(resultState, {
+                updateAllRead(it)
+            })
+        })
 
         messageViewModel.messageLiveData.observe(this, Observer {
             srl.isRefreshing = false
@@ -163,6 +182,11 @@ class ChatActivity : BaseActivity<ChatViewModel, FragmentChatBinding>(){
             if(isAutoScroll){
                 rv.scrollToPosition(mAdapter.itemCount - 1)
             }
+
+            if(firstIn){
+                updateAllRead(10000000000)
+                firstIn = false
+            }
         })
 
         requestMessageViewModel.messageReq.observe(this, Observer {resultState ->
@@ -172,6 +196,21 @@ class ChatActivity : BaseActivity<ChatViewModel, FragmentChatBinding>(){
                 sendEvent(it)
             })
         })
+    }
+
+    fun updateAllRead(time:Long){
+
+        for (index in 0 until mAdapter.itemCount){
+            val resp = mAdapter.getItem(index)
+            resp?.let {
+                if (it.dateTime.toLong() <= time && resp.haveRead == false){
+                    it.haveRead = true
+                    mAdapter.notifyItemChanged(index)
+                }
+            }
+        }
+
+
     }
 
     private fun updateBtnStatus(isEmpty: Boolean){
@@ -192,6 +231,7 @@ class ChatActivity : BaseActivity<ChatViewModel, FragmentChatBinding>(){
 
     override fun onDestroy() {
         KeyboardUtils.unregisterSoftInputChangedListener(this)
+        timer.cancel()
         super.onDestroy()
     }
 

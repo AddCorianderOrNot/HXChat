@@ -28,4 +28,10 @@
     <dimen name="app_bar_height">230dp</dimen>
     <dimen name="size_160dp">160dp</dimen>
     <dimen name="size_180dp">180dp</dimen>
+    <dimen name="size_15dp">15dp</dimen>
+    <dimen name="size_10sp">10sp</dimen>
+    <dimen name="size_5dp">5dp</dimen>
+    <dimen name="size_37dp">37dp</dimen>
+    <dimen name="size_10p">10dp</dimen>
+    <dimen name="size_40p">40dp</dimen>
 </resources>

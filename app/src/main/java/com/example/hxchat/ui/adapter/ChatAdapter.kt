@@ -31,4 +31,5 @@ class ChatAdapter(var friendImageUrl: String?, var myImageUrl : String?): BaseMu
             it.executePendingBindings()
         }
     }
+
 }

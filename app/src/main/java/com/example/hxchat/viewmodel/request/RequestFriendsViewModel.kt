@@ -20,6 +20,7 @@ import org.greenrobot.eventbus.EventBus
  */
 class RequestFriendsViewModel : BaseViewModel(){
     var friendsData : MutableLiveData<ResultState<ArrayList<User>>> = MutableLiveData()
+    var newFriendsData : MutableLiveData<ResultState<ArrayList<User>>> = MutableLiveData()
 
     /**
      * 获取用户的好友列表
@@ -30,5 +31,34 @@ class RequestFriendsViewModel : BaseViewModel(){
             { apiService.getFriends() },
             friendsData
         )
+    }
+
+    /**
+     * 获得新的好友申请的列表
+     */
+    fun getNewFriend(){
+        val user = User(
+        "1234567@qq.com",
+        "Pbihao",
+        "",
+        ""
+        )
+        val list = ArrayList<User>()
+        list.add(user)
+        newFriendsData.postValue(ResultState.onAppSuccess(list))
+    }
+
+    /**
+     * 同意了添加好友
+     */
+    fun acceptNewFriend(myEmail:String, friendEmail:String){
+        
+    }
+
+    /**
+     * 拒绝了添加好友
+     */
+    fun cancelNewFriend(myEmail: String, friendEmail:String){
+
     }
 }
