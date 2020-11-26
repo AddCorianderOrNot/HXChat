@@ -1,14 +1,10 @@
 package com.example.hxchat.ui.fragment.friends
 
-import android.app.Application
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.hxchat.ui.adapter.BindingAdapter
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,16 +14,11 @@ import com.example.hxchat.app.base.BaseFragment
 import com.example.hxchat.data.model.bean.User
 import com.example.hxchat.data.packet.resp.AcceptResp
 import com.example.hxchat.databinding.FragmentFriendsBinding
-import com.example.hxchat.ui.adapter.FriendsAdapter
 import com.example.hxchat.viewmodel.request.RequestFriendsViewModel
 import com.example.hxchat.viewmodel.state.FriendsViewModel
-import com.example.hxchat.viewmodel.state.MessageViewModel
 import com.example.hxchat.viewmodel.state.UsersViewModel
-import com.king.frame.mvvmframe.bean.Resource
-import kotlinx.android.synthetic.main.fragment_friends.*
 import kotlinx.android.synthetic.main.fragment_friends.rv
 import kotlinx.android.synthetic.main.fragment_friends.srl
-import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.home_toolbar.*
 import me.hgj.jetpackmvvm.ext.nav
 import me.hgj.jetpackmvvm.ext.navigateAction
@@ -72,9 +63,10 @@ class FriendsFragment:BaseFragment<FriendsViewModel, FragmentFriendsBinding>(), 
     }
 
     override fun createObserver() {
+
+
         requestFriendsViewModel.friendsData.observe(viewLifecycleOwner, Observer { resultState ->
             parseState(resultState, {
-                Log.d("it", it.toString())
                 mAdapter.replaceData(it)
                 if (it.size > 0) {
                     usersViewModel.saveUsers(it)

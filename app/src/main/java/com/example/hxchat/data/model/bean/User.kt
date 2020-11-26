@@ -22,7 +22,6 @@ class User(
     var signature: String?,
     var remark: String? = null
 ) : Parcelable {
-
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 

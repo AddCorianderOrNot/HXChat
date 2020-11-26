@@ -3,6 +3,7 @@ package com.example.hxchat.app
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
+val NEWFRIEND = "newfriend"
 object Constants {
 
 
