@@ -4,6 +4,7 @@ import com.example.hxchat.data.model.bean.ApiResponse
 import com.example.hxchat.data.model.bean.User
 import com.example.hxchat.data.model.bean.UserInfo
 import com.example.hxchat.data.packet.resp.MessageResp
+import net.alhazmy13.wordcloud.WordCloud
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
@@ -97,4 +98,27 @@ interface ApiService {
      */
     @GET("message")
     suspend fun receiveMessage(): ApiResponse<ArrayList<MessageResp>>
+
+    /**
+     * 拉取词云
+     */
+    @GET("message/wordcloud")
+    suspend fun getWordcloud(): ApiResponse<ArrayList<String>>
+
+    /**
+     * 更新阅读时间
+     */
+    @POST("friend/time")
+    suspend fun updateReadTime(
+        @Body body: RequestBody
+    ): ApiResponse<Any>
+
+    /**
+     * 获取阅读时间
+     */
+    @GET("friend/time")
+    suspend fun getReadTime(
+        @Query("friend_id") friend: String?
+    ): ApiResponse<Long>
+
 }
