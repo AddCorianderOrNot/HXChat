@@ -45,21 +45,25 @@ class WordCloudFragment : BaseFragment<MeViewModel, FragmentWordCloudBinding>(){
     }
 
     override fun createObserver() {
-        requestWordCloud.wordCloud.observe(viewLifecycleOwner, Observer {resultState ->
 
-            parseState(resultState,{
+        requestWordCloud.word.observe(viewLifecycleOwner, Observer { resultState ->
+            parseState(resultState, {
+                val list:ArrayList<WordCloud> = ArrayList()
+                val random = Random(123)
+                for(wd in it){
+                    list.add(WordCloud(wd, random.nextInt(50)))
+                }
                 activity?.runOnUiThread(Runnable {
-                    wordCloud.setDataSet(it)
+                    wordCloud.setDataSet(list)
                     wordCloud.setSize(400,700)
                     wordCloud.setColors(ColorTemplate.MATERIAL_COLORS)
                     wordCloud.notifyDataSetChanged()
                 })
-
             },{
                 showMessage(it.errorMsg)
             })
         })
-
     }
+
 
 }
